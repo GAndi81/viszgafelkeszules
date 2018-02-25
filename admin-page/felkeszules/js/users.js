@@ -41,6 +41,110 @@ var appearTableBody = function (usersArray) {
     }
 }
 
+/*
+    o	Statisztika
+    o	A táblázatok alá kiírja külön bekezdésekbe a következőket:
+    	A legidősebb ember felhasználóneve, mellé a dátum a következő formában: 1990. március 10.*/
+
+var legfiatalabbUserneve = function () {
+    var min = Number.MIN_VALUE;
+    for (var i = 0; i < userDatas.length; i++) {
+        if (userDatas[i].birthdate = min) {
+            min = userDatas[i].birthdate;
+        }
+    }
+    return min;
+}
+
+var formatDate = function (dateValue) {
+    dateValue = new Date(dateValue);
+    var y = dateValue.getFullYear();
+    var m = dateValue.getMonth() + 1;
+    var d = dateValue.getDate();
+    m = m < 10 ? '0' + m : m;
+    d = d < 10 ? '0' + d : d;
+    return `${y}.${m}.${d}.`;
+}
+
+/*
+	A legfiatalabb ember felhasználóneve mellé a dátum a következő formában: 1990. március 10.*/
+
+var legfiatalabbUserneve = function (userDatas) {
+    var max = Number.MAX_VALUE;
+    for (var i = 0; i < userDatas.length; i++) {
+        if (userDatas[i].birthdate = max) {
+            max = userDatas[i].birthdate;
+        }
+    }
+    return max;
+}
+
+var formatDate = function (dateValue) {
+    dateValue = new Date(dateValue);
+    var y = dateValue.getFullYear();
+    var m = dateValue.getMonth() + 1;
+    var d = dateValue.getDate();
+    m = m < 10 ? '0' + m : m;
+    d = d < 10 ? '0' + d : d;
+    return `${y}.${m}.${d}.`;
+}
+/*
+	Az átlagéletkort két tizedes jegyre kerekítve.
+*/
+var atlagEletkor = function (userDatas) {
+    var db = 0;
+    var avg;
+    for (var i = 0; i < userDatas.length; i++) {
+        if (userDatas[i].birthdate) {
+            db++;
+        }
+    }
+    avg = parseFloat(osszEletkor(userDatas) / db);
+    return avg.toFixed(2);
+}
+
+
+/*
+	Az összegzett életkort.
+
+*/
+
+var osszEletkor = function (userDatas) {
+    var ossz = 0;
+    for (var i = 0; i < userDatas.length; i++) {
+        if (userDatas[i].birthdate) {
+            ossz += parseFloat(userDatas[i].birthdate);
+        }
+    }
+    return ossz.toFixed(2);
+}
+
+
+var statistic = function (userDatas) {
+    return {
+        'A legidősebb ember felhasználóneve, mellé a dátum a következő formában: 1990. március 10.': legidosebbUserneve(userDatas),
+        'A legfiatalabb ember felhasználóneve mellé a dátum a következő formában: 1990. március 10.': legfiatalabbUserneve(userDatas),
+        'Az átlagéletkor két tizedes jegyre kerekítve': atlagEletkor(userDatas),
+        'Az összegzett életkor': osszEletkor(userDatas),
+
+
+        'Csak az  1990 előtt született felhasználók felhasználónevét írja ki a táblázatba': elottszuletett(userDatas),
+        '3 legidősebb': haromLegidosebb(userDatas),
+        'Szűrt nevek': szurtNevek(userDatas),
+        'Városok': varosok(userDatas),
+        '2000 előttiek': ketezerElottiek(userDatas),
+    }
+}
+
+
+var appearstatistic = function (userDatas) {
+    var stat = statistic(userDatas);
+    for (var i in stat) {
+        var p = document.createElement('p');
+        p.textContent = `${i} : ${stat[i]}`;
+        document.body.appendChild(p);
+    }
+}
 
 
 function getData(url, callbackFunc) {
@@ -60,6 +164,7 @@ function successAjax(xhttp) {
     console.log(userDatas);
     appearTableHeader();
     appearTableBody(userDatas[0].users);
+    appearstatistic();
 
 
 }
