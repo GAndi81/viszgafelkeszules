@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Űrlap</title>
+
+    <link rel="stylesheet" href="css/form.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body>
+
+    <div class="login">
+
+        <div id="camera">
+
+            <!--<img src="images/camera-blue.png">-->
+
+            <i class="fa fa-camera"></i>
+
+        </div>
+
+        <form class="login-container">
+
+            <p>
+                <i class="fa fa-user"></i>
+                <input type="email" name="email" id="email" placeholder="username" required>
+            </p>
+
+            <p>
+                <i class="fa fa-lock"></i>
+                <input type="password" name="password" id="password" placeholder="********" required>
+            </p>
+
+            <p>
+                <span id="error"></span>
+                <span id="success"></span>
+                <input type="button" id="katt" value="LOGIN">
+            </p>
+
+            <div class="footer">
+
+                <input type="checkbox" name="checkbox" id="checkbox" value="" checked>
+                <label for="checkbox" id="szoveg">Remember me</label>
+
+                <a href="#" id="forgot">Forgot password?</a>
+
+            </div>
+
+        </form>
+
+        <p class="copyright">Copyright@ 2018 Your Brand Name Inc.</p>
+
+    </div>
+
+
+    <script src="js/feladatok-javitott.js"></script>
+</body>
+
+</html>

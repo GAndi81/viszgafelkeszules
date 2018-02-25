@@ -1,0 +1,98 @@
+body {
+    background-color: #C9D3E2;
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+}
+
+.login {
+    margin: 30px auto;
+    width: 500px;
+    height: 500px;
+    border: 1px solid #C9D3E2;
+    background: repeating-linear-gradient(to bottom right, #759CD5, #12365A)
+}
+
+.login-container {
+    margin-right: 40px;
+    margin-left: 40px;
+    padding: 55px 52px;
+    font-size: 12px;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    position: relative;
+}
+
+#camera {
+    padding-top: 23px;
+    padding-right: 50px;
+    padding-left: 49px;
+    color: #ffffff;
+    position: relative;
+    font-size: 45px;
+    float: center;
+    text-align: center;
+}
+
+p {
+    margin: 10px;
+}
+
+#username {
+    padding: 10px 40px;
+}
+
+#email {
+    padding: 10px 40px;
+}
+
+/*.fas fa-user {}*/
+
+#password {
+    padding: 10px 40px;
+}
+
+#login {
+    padding: 10px 98px;
+    background-color: #035EA7;
+}
+
+#forgot {
+    color: #ffffff;
+    float: right;
+    text-align: center;
+    color: #000000;
+    margin: 0px;
+    font-style: italic;
+}
+
+#szoveg,
+#checkbox {
+    color: #ffffff;
+    float: left;
+    text-align: center;
+    color: #000000;
+}
+
+.copyright {
+    color: #ffffff;
+    text-align: center;
+    font-size: 12px;
+}
+
+.fa-user {
+    color: #C9D3E2;
+}
+
+.fa-lock {
+    color: #C9D3E2;
+}
+
+#error {
+    color: #e61010;
+}
+
+#success {
+    color: #1ae21a;
+}

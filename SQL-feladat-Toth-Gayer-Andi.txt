@@ -1,0 +1,122 @@
+Gergõ adatbázisos feladat:
+
+users
+b1OIZ2izOdKxnPX5
+
+CREATE USER 'users'@'localhost' IDENTIFIED WITH mysql_native_password AS '***';GRANT USAGE ON *.* TO 'users'@'localhost' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;CREATE DATABASE IF NOT EXISTS `users`;GRANT ALL PRIVILEGES ON `users`.* TO 'users'@'localhost';
+
+CREATE TABLE person (
+
+id bigint(20) not null PRIMARY KEY,
+username varchar(50) not null UNIQUE,
+password varchar(50) not null,
+firstname varchar(50) not null,
+lastname varchar(50) not null,
+country varchar(30) not null DEFAULT 'Magyarország',
+state varchar(30) null,
+zipcode varchar(30) not null,
+city varchar(50) not null DEFAULT 'Budapest',
+address varchar(50) not null,
+sex varchar(10) not null DEFAULT 'Férfi',
+birthdate date not null,
+email varchar(100) not null UNIQUE,
+phone int(11) not null,
+
+CHECK (sex IN ('Férfi','Nõ')),
+CHECK (birthdate BETWEEN 1900-01-01 AND 2018-02-26),
+CHECK (email LIKE '%gmail.com'),
+CHECK (phone LIKE '20%' OR phone like '30%' OR phone like '70%')
+
+) ENGINE=MyIsam;
+
+INSERT INTO person VALUES (1, 'user-01', 'pass-01', 'Kiss', 'Árpád',
+'Magyarország', 'Budapest', '1001', 'Budapest', 'Kacsóh Pongrác út 11.',
+'férfi', '1990-02-12', 'kiss.arpad@gmail.com', '701234567');
+INSERT INTO person VALUES (2, 'user-02', 'pass-02', 'Kovács', 'Géza',
+'Magyarország', 'Gyõr-Moson-Sopron', '9023', 'Gyõr', 'Tihanyi Árpád út
+72.', 'férfi', '1980-01-01', 'kovacs.geza@gmail.com', '304367843');
+INSERT INTO person VALUES (3, 'user-03', 'pass-03', 'Karvaly', 'Beáta',
+'Magyarország', '', '1089', 'Budapest', 'Sárkány utca 4.', 'nõ',
+'1963-12-31', 'karvaly.beata@gmail.com', '203857390');
+INSERT INTO person VALUES (4, 'user-04', 'pass-04', 'Láncos', 'Csombor',
+'Magyarország', 'Pest', '2100', 'Gödöllõ', 'Szabadság tér 110.',
+'férfi', '2000-03-21', 'lancos.csombor@gmail.com', '707329871');
+INSERT INTO person VALUES (5, 'user-05', 'pass-05', 'Csermely',
+'Fruzsina', 'Magyarország', 'Budapest', '2100', 'Budapest', 'Jónás utca
+2.', 'nõ', '2001-05-15', 'csermely.fruzsina@gmail.com', '302849382');
+INSERT INTO person VALUES (6, 'user-06', 'pass-06', 'Csáth', 'Lukács',
+'Magyarország', '', '1120', 'Budapest', 'Szentlélek tér 4.', 'férfi',
+'1939-07-11', 'csath.lukacs@gmail.com', '206674329');
+INSERT INTO person VALUES (7, 'user-07', 'pass-07', 'Seszták', 'Éva',
+'Magyarország', 'Komárom-Esztergom', '2800', 'Tatabánya', 'Bánya köz
+1.', 'nõ', '1965-08-20', 'sesztak.eva@gmail.com', '304738282');
+INSERT INTO person VALUES (8, 'user-08', 'pass-08', 'Bánki', 'Donát',
+'Magyarország', '', '1218', 'Budapest', 'Zsigmond Vilmos utca 42.',
+'férfi', '1970-09-03', 'banki.donat@gmail.com', '304638738');
+INSERT INTO person VALUES (9, 'user-09', 'pass-09', 'Fehér', 'Antal',
+'Magyarország', 'Budapest', '1090', 'Budapest', 'Szépia köz 5.',
+'férfi', '1994-05-05', 'feher.antal@gmail.com', '705874838');
+INSERT INTO person VALUES (10, 'user-10', 'pass-10', 'Zsémbes', 'Judit',
+'Magyarország', 'Budapest', '1032', 'Budapest', 'Marcona út 76.', 'nõ',
+'1973-04-30', 'zsembes.judit@gmail.com', '204839281');
+
+
+Lekérdezések:
+
+a.) 
+SELECT username FROM `person` WHERE birthdate < '1990-01-01';
+
+b.) 
+SELECT lastname, firstname, birthdate FROM `person` ORDER BY birthdate ASC;
+
+c.) 
+SELECT firstname AS keresztnev, lastname AS vezeteknev, state
+FROM `person`
+WHERE sex = 'Férfi' AND city = 'Budapest' AND (birthdate BETWEEN '1900-01-01' AND '2000-01-01')
+ORDER BY lastname
+
+d.) 
+SELECT COUNT(*), city, firstname, lastname
+FROM `person`
+GROUP BY city
+HAVING COUNT(*) >= 2;
+
+e.) 
+
+SELECT username, lastname as 'Vezetéknév', firstname as 'Keresztnév', email as 'Email cím', phone as 'Telefonszám' 
+FROM `person`
+WHERE birthdate < '2000-01-01' OR city <> 'Budapest'
+GROUP BY sex;
+
+f.)
+
+UPDATE person
+SET email = 'zsjudit@gmail.com'
+WHERE phone = '204839281' 
+
+g.)
+
+DELETE FROM person
+WHERE id='3';
+
+h.)
+
+RENAME TABLE person TO applicationusers;
+
+i.)
+
+CREATE INDEX idx_email
+ON applicationusers (email); 
+
+j.) Töröld az állam/megye mezõt.
+
+ALTER TABLE applicationusers
+DROP COLUMN state;
+
+
+
+
+
+
+
+
