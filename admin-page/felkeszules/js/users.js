@@ -64,6 +64,7 @@ function successAjax(xhttp) {
 
 }
 
+
 /*
       Pár sorral lejebb majd ezt olvashatod:
       IDE ÍRD A FÜGGVÉNYEKET!!!!!! NE EBBE AZ EGY SORBA HANEM INNEN LEFELÉ!
